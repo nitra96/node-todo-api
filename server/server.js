@@ -41,6 +41,8 @@ app.listen(3000, () =>{
     console.log('Starter on port 3000');
 });
 
+module.exports = {app};
+
 
 
 
