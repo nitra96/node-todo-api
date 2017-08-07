@@ -10,32 +10,20 @@ var app = express();
 
 app.use(bodyParser.json());
 
-//app.post('/todos', (req, res) =>{
-////  console.log(req.body);
-//
-//var toDo = new todo({
-//   text: req.body.text 
-//});
-//
-//toDo.save().then((doc) =>{
-//res.send(doc);  
-//}, (e) =>{
-//res.status(400).send(e);
-//   }); 
-//});
+app.post('/todos', (req, res) =>{
+//  console.log(req.body);
 
-
-app.post('/todos', (req,res) =>{
-     
-var someNew = new todo({
-        text: req.body.text
+var toDo = new todo({
+   text: req.body.text 
 });
-someNew.save().then((docs) =>{
-   res.send(docs);
+
+toDo.save().then((doc) =>{
+res.send(doc);  
 }, (e) =>{
-res.status(400).send(e);    
-});  
+res.status(400).send(e);
+   }); 
 });
+
 
 app.get('/todos', (req, res)=>{
     todo.find().then((todos)=>{
@@ -45,6 +33,7 @@ app.get('/todos', (req, res)=>{
     });
 });
 
+
 app.listen(3000, () =>{
     console.log('Starter on port 3000');
 });
@@ -53,7 +42,7 @@ module.exports = {app};
 
 
 
-
+  
 
 
 
