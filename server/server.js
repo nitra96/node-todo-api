@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
 
 var {mongoose }= require('./db/mongoose');
@@ -32,6 +33,60 @@ app.get('/todos', (req, res)=>{
      res.status(400).send(e);   
     });
 });
+
+app.get('/todos/:id', (req, res) =>{
+    var id = req.params.id;
+if (!ObjectID.isValid(id)){
+    return res.status(404).send();
+}
+    
+todo.findById(id).then((todo) =>{
+    if(!todo){
+        return res.status(404).send();
+    }
+    res.send({todo});
+},(e) => {res.status(400).send();
+});    
+//    res.send(req.params);
+});
+
+
+//todo.findById(id).then((todo) =>{
+//    if(!todo){
+//       return console.log('Id not found');
+//       }
+//    console.log('Todo By ID', todo);                  
+//}).catch((e) => console.log(e));
+
+
+
+
+
+
+
+
+
+
+//*************USERS*****************//
+//app.post('/users', (req, res) =>{
+//    var newUser = new User({
+//        email: req.body.email
+//    });
+//
+//newUser.save().then((docs) =>{
+//    res.send(docs);
+//}, (e) =>{
+//    res.status(400).send(e);
+//});    
+//});
+//
+//app.get('/users',(req, res) =>{
+//    User.find().then((users) =>{
+//        res.sennd({users})
+//    }, (e) =>{
+//        res.status(400).send(e);
+//    });
+//});
 
 
 app.listen(3000, () =>{
