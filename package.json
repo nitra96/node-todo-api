@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",  
     "test": "mocha server/**/*.test.js",
     "test-watch": "sudo nodemon --exec 'npm test'"  
       
   },
+  "engine": {
+    "node": "8.1.4"
+},
   "author": "",
   "license": "ISC",
   "description": "",
