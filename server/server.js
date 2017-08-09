@@ -73,21 +73,6 @@ todo.findByIdAndRemove(id).then((todo) =>{
 }, (e)=>{res.status(400).send()
         });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //*************USERS*****************//
 //app.post('/users', (req, res) =>{
 //    var newUser = new User({
