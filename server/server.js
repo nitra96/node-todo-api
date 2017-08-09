@@ -60,6 +60,25 @@ todo.findById(id).then((todo) =>{
 //    console.log('Todo By ID', todo);                  
 //}).catch((e) => console.log(e));
 
+app.delete('/todos/:id', (req, res) =>{
+    var id = req.params.id;
+if(!ObjectID.isValid(id)){
+    return res.status(404).send();
+}
+todo.findByIdAndRemove(id).then((todo) =>{
+    if(!todo){
+        return res.status(404).send();
+    }
+    res.status(200).send({todo});
+}, (e)=>{res.status(400).send()
+        });
+});
+
+
+
+
+
+
 
 
 

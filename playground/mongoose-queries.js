@@ -21,14 +21,14 @@ const {User} = require('./../server/models/user');
 ////    console.log('Todo', todo);
 ////});
 //
-//todo.findById(id).then((todo) =>{
-//    if(!todo){
-//        return console.log('Id not found');
-//    }
-//    console.log('Todo By ID', todo);
-//}).catch((e) => console.log(e));
-// 
-//var id = '598319c66c21d9353f196174';
+todo.findById(id).then((todo) =>{
+    if(!todo){
+        return console.log('Id not found');
+    }
+    console.log('Todo By ID', todo);
+}).catch((e) => console.log(e));
+ 
+var id = '598319c66c21d9353f196174';
 //User.findById(id).then((user) =>{
 //    if(!User){
 //        return console.log('User not found');
