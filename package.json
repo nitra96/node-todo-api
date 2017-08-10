@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",  
+    "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
-    "test-watch": "sudo nodemon --exec 'npm test'"  
+    "test-watch": "sudo nodemon --exec 'npm test'"
   },
-  "engines":{
-      "node": "8.1.4"
+  "engines": {
+    "node": "8.1.4"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.15.3",
     "heroku": "^0.2.0",
+    "lodash": "^4.17.4",
     "mongodb": "^2.2.5",
     "mongoose": "^4.10.8"
   },
