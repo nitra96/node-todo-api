@@ -1,3 +1,5 @@
+require('./config/config.js');
+
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,7 +12,7 @@ var {User} = require('./models/user');
 
 var app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
@@ -18,22 +20,22 @@ app.post('/todos', (req, res) =>{
 //  console.log(req.body);
 
 var toDo = new todo({
-   text: req.body.text 
+   text: req.body.text
 });
 
 toDo.save().then((doc) =>{
-res.send(doc);  
+res.send(doc);
 }, (e) =>{
 res.status(400).send(e);
-   }); 
+   });
 });
 
 
 app.get('/todos', (req, res)=>{
     todo.find().then((todos)=>{
-      res.send({todos})  
+      res.send({todos})
     }, (e) =>{
-     res.status(400).send(e);   
+     res.status(400).send(e);
     });
 });
 
@@ -42,14 +44,14 @@ app.get('/todos/:id', (req, res) =>{
 if (!ObjectID.isValid(id)){
     return res.status(404).send();
 }
-    
+
 todo.findById(id).then((todo) =>{
     if(!todo){
         return res.status(404).send();
     }
     res.send({todo});
 },(e) => {res.status(400).send();
-});    
+});
 //    res.send(req.params);
 });
 
@@ -58,7 +60,7 @@ todo.findById(id).then((todo) =>{
 //    if(!todo){
 //       return console.log('Id not found');
 //       }
-//    console.log('Todo By ID', todo);                  
+//    console.log('Todo By ID', todo);
 //}).catch((e) => console.log(e));
 
 app.delete('/todos/:id', (req, res) =>{
@@ -78,7 +80,7 @@ todo.findByIdAndRemove(id).then((todo) =>{
 app.patch('/todos/:id', (req, res) => {
     var id = req.params.id;
     var body = _.pick(req.body, ['text', 'completed']);
-    
+
     if (!ObjectID.isValid(id)){
     return res.status(404).send();
 }
@@ -89,14 +91,14 @@ app.patch('/todos/:id', (req, res) => {
         body.completed = false;
         body.completedAt = null;
     }
-    
-    
+
+
     todo.findByIdAndUpdate(id, {$set :body}, {new: true}).then((toDo) =>{
         if (!toDo) {
             return res.status(404).send();
         }
         res.send({toDo});
-        
+
     }).catch((e) => {
         res.status(400).send();
     })
@@ -112,7 +114,7 @@ app.patch('/todos/:id', (req, res) => {
 //    res.send(docs);
 //}, (e) =>{
 //    res.status(400).send(e);
-//});    
+//});
 //});
 //
 //app.get('/users',(req, res) =>{
@@ -132,7 +134,7 @@ module.exports = {app};
 
 
 
-  
+
 
 
 
@@ -171,7 +173,7 @@ module.exports = {app};
 //});
 //
 //newTodo.save().then((doc) =>{
-//   console.log('Saved todo'); 
+//   console.log('Saved todo');
 //},(e) =>{
 //    console.log('Unable to save todo');
 //});
@@ -187,4 +189,3 @@ module.exports = {app};
 //}, (e) => {
 //    console.log('Unable to save user');
 //});
-
