@@ -1,4 +1,4 @@
-require('./config/config.js');
+require('./config/config');
 
 const _ = require('lodash');
 const express = require('express');
@@ -93,7 +93,7 @@ app.patch('/todos/:id', (req, res) => {
     }
 
 
-    todo.findByIdAndUpdate(id, {$set :body}, {new: true}).then((toDo) =>{
+    todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((toDo) =>{
         if (!toDo) {
             return res.status(404).send();
         }
